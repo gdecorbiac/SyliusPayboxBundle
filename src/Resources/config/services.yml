@@ -1,0 +1,12 @@
+services:
+    sylius.form.type.gateway_configuration.paybox:
+        class: Gontran\SyliusPayboxBundle\Form\Type\PayboxGatewayConfigurationType
+        tags:
+            - { name: sylius.gateway_configuration_type, type: paybox, label: sylius.payum_gateway_factory.paybox_checkout }
+            - { name: form.type }
+
+    sylius.payment.paybox.factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [Gontran\SyliusPayboxBundle\PayboxGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: paybox }
