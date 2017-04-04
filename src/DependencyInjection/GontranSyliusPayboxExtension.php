@@ -15,7 +15,13 @@ final class GontranSyliusPayboxExtension extends Extension
     public function load(array $config, ContainerBuilder $container)
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
+
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    public function getAlias()
+    {
+        return 'paybox';
     }
 }

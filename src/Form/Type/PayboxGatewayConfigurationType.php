@@ -15,47 +15,6 @@ final class PayboxGatewayConfigurationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('site', TextType::class, [
-                'label' => 'sylius.form.gateway_configuration.paybox.site',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'sylius.gateway_config.stripe.secret_key.not_blank',
-                        'groups' => 'sylius',
-                    ])
-                ],
-            ])
-            ->add('rang', TextType::class, [
-                'label' => 'sylius.form.gateway_configuration.paybox.rank',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'sylius.gateway_config.stripe.secret_key.not_blank',
-                        'groups' => 'sylius',
-                    ])
-                ],
-            ])
-            ->add('identifiant', TextType::class, [
-                'label' => 'sylius.form.gateway_configuration.paybox.identifier',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'sylius.gateway_config.stripe.secret_key.not_blank',
-                        'groups' => 'sylius',
-                    ])
-                ],
-            ])
-            ->add('hmac', TextType::class, [
-                'label' => 'sylius.form.gateway_configuration.paybox.hmac',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'sylius.gateway_config.stripe.secret_key.not_blank',
-                        'groups' => 'sylius',
-                    ])
-                ],
-            ])
-            ->add('sandbox', CheckboxType::class, [
-                'label' => 'sylius.form.gateway_configuration.paybox.sandbox',
-                'required' => false,
-            ])
-        ;
+        // TODO : allow configuration of credentials from Sylius Admin panel
     }
 }
