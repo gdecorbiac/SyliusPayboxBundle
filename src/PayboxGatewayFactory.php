@@ -32,10 +32,18 @@ class PayboxGatewayFactory extends GatewayFactory
 
         if (false == $config['payum.api']) {
             $config['payum.default_options'] = array(
+                'site' => '',
+                'rang' => '',
+                'identifiant' => '',
+                'hmac' => '',
+                'hash' => 'SHA512',
+                'retour' => 'Mt:M;Ref:R;Auto:A;Appel:T;Abo:B;Reponse:E;Transaction:S;Pays:Y;Signature:K',
                 'sandbox' => true,
+                'type_paiement' => '',
+                'type_carte' => ''
             );
             $config->defaults($config['payum.default_options']);
-            $config['payum.required_options'] = [];
+            $config['payum.required_options'] = array('site', 'rang', 'identifiant', 'hmac');
 
             $config['payum.api'] = function (ArrayObject $config) {
                 $config->validateNotEmpty($config['payum.required_options']);

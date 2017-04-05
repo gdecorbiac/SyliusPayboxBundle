@@ -10,13 +10,13 @@ namespace Gontran\SyliusPayboxBundle;
 interface PayboxParams {
 
     // Default servers urls
-    const SERVERS_CLASSIC_PREPROD = 'https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi';
-    const SERVERS_CLASSIC_PROD = array ('https://tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', 'https://tpeweb1.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi');
-    const SERVERS_IFRAME_PREPROD = 'https://preprod-tpeweb.e-transactions.fr/cgi/MYframepagepaiement_ip.cgi';
-    const SERVERS_IFRAME_PROD = array ('https://tpeweb.e-transactions.fr/cgi/MYframepagepaiement_ip.cgi', 'https://tpeweb1.e-transactions.fr/cgi/MYframepagepaiement_ip.cgi');
-    const SERVERS_MOBILE_PREPROD = 'https://preprod-tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi';
-    const SERVERS_MOBILE_PROD = array ('https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi', 'https://tpeweb1.e-transactions.fr/cgi/ChoixPaiementMobile.cgi');
+    const SERVERS_PREPROD =  array('preprod-tpeweb.e-transactions.fr');
+    const SERVERS_PROD =  array('tpeweb.e-transactions.fr', 'tpeweb1.e-transactions.fr');
 
+    const URL_CLASSIC = 'cgi/MYchoix_pagepaiement.cgi';
+    const URL_IFRAME = 'cgi/MYframepagepaiement_ip.cgi';
+    const URL_MOBILE = 'cgi/ChoixPaiementMobile.cgi';
+    
     const RETURN_FORMAT = 'Mt:M;Ref:R;Auto:A;Appel:T;Abo:B;Reponse:E;Transaction:S;Pays:Y;Signature:K';
 
     // Requests params

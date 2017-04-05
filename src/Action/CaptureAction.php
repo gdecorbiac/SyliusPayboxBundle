@@ -1,15 +1,28 @@
 <?php
 namespace Gontran\SyliusPayboxBundle\Action;
 
+use Gontran\SyliusPayboxBundle\Api;
+
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayAwareTrait;
+use Payum\Core\ApiAwareTrait;
+use Payum\Core\ApiAwareInterface;
+use Payum\Core\Action\GatewayAwareAction;
 use Payum\Core\Request\Capture;
 use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\Request\GetHttpRequest;
+use Payum\Core\Reply\HttpPostRedirect;
 
-class CaptureAction implements ActionInterface
+class CaptureAction  extends GatewayAwareAction implements ApiAwareInterface
 {
-    use GatewayAwareTrait;
+    use ApiAwareTrait;
+
+    public function __construct()
+    {
+        $this->apiClass = Api::class;
+    }
+
 
     /**
      * {@inheritDoc}
@@ -22,7 +35,14 @@ class CaptureAction implements ActionInterface
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-        throw new \LogicException('Not implemented');
+        $httpRequest = new GetHttpRequest();
+        $this->gateway->execute($httpRequest);
+
+        if (isset($httpRequest->query['error_code'])) {
+            $model->replace($httpRequest->query);
+        } else {
+            $this->api->doPayment((array)$model);
+        }
     }
 
     /**
