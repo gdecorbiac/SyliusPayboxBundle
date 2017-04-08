@@ -66,9 +66,11 @@ class StatusAction implements ActionInterface, GatewayAwareInterface
 
                 case PaymentInterface::STATE_COMPLETED:
                     $request->markCaptured();
+                    break;
 
                 case PaymentInterface::STATE_FAILED:
                     $request->markFailed();
+                    break;
 
                 default:
                     $request->markCanceled();
