@@ -1,0 +1,9 @@
+sylius:
+    form:
+        gateway_configuration:
+            paybox:
+                identifier: Identifiant
+                hmac: Clé HMAC
+                rank: Rang
+                sandbox: Mode bac-à-sable
+                site: Site
