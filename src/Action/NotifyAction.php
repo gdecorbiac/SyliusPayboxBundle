@@ -5,9 +5,12 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\GatewayAwareTrait;
+use Payum\Core\GatewayAwareInterface;
+use Payum\Core\Reply\HttpResponse;
+use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\Notify;
 
-class NotifyAction implements ActionInterface
+class NotifyAction implements ActionInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
 
@@ -20,9 +23,14 @@ class NotifyAction implements ActionInterface
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
-        $model = ArrayObject::ensureArrayObject($request->getModel());
+        $details = ArrayObject::ensureArrayObject($request->getModel());
 
-        throw new \LogicException('Not implemented');
+        $this->gateway->execute($httpRequest = new GetHttpRequest());
+
+        $httpRequest->query['notification_pending'] = true;
+        $details->replace($httpRequest->query);
+
+        throw new HttpResponse('OK', 200);
     }
 
     /**

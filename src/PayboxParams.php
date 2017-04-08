@@ -16,10 +16,15 @@ interface PayboxParams {
     const URL_CLASSIC = 'cgi/MYchoix_pagepaiement.cgi';
     const URL_IFRAME = 'cgi/MYframepagepaiement_ip.cgi';
     const URL_MOBILE = 'cgi/ChoixPaiementMobile.cgi';
-    
-    const RETURN_FORMAT = 'Mt:M;Ref:R;Auto:A;Appel:T;Abo:B;Reponse:E;Transaction:S;Pays:Y;Signature:K';
 
-    // Requests params
+    // Requests params values
+    // TODO : use ConfigTreeBuilder to configure it
+    const PBX_RETOUR_VALUE = 'Mt:M;Ref:R;Auto:A;error_code:E';
+    const PBX_DEVISE_EURO = '978';
+    const PBX_SOURCE_MOBILE = 'XHTML';
+    const PBX_SOURCE_DESKTOP = 'HTML';
+
+    // Requests params keys
     const PBX_SITE = "PBX_SITE";
     const PBX_RANG = "PBX_RANG";
     const PBX_IDENTIFIANT = "PBX_IDENTIFIANT";
@@ -35,5 +40,7 @@ interface PayboxParams {
     const PBX_EFFECTUE = "PBX_EFFECTUE";
     const PBX_ANNULE = "PBX_ANNULE";
     const PBX_REFUSE = "PBX_REFUSE";
+    const PBX_REPONDRE_A = "PBX_REPONDRE_A";
     const PBX_TIME = "PBX_TIME";
+    const PBX_SOURCE = "PBX_SOURCE";
 }
