@@ -1,4 +1,4 @@
-# Sylius Paybox Bundle by Gontran [![License](https://img.shields.io/packagist/l/sylius/bundle-skeleton.svg)](https://packagist.org/packages/sylius/bundle-skeleton) [![Version](https://img.shields.io/packagist/v/sylius/bundle-skeleton.svg)](https://packagist.org/packages/sylius/bundle-skeleton) [![Build status on Linux](https://img.shields.io/travis/Sylius/BundleSkeleton/master.svg)](http://travis-ci.org/Sylius/BundleSkeleton) [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/Sylius/BundleSkeleton.svg)](https://scrutinizer-ci.com/g/Sylius/BundleSkeleton/)
+# Sylius Paybox Bundle by Gontran [![License](https://img.shields.io/packagist/l/gontran/sylius-paybox.svg)](https://packagist.org/packages/gontran/sylius-paybox) [![Version](https://img.shields.io/packagist/v/gontran/sylius-paybox.svg)](https://packagist.org/packages/gontran/sylius-paybox)
 
 Paybox gateway for Sylius projects.
 
@@ -9,6 +9,8 @@ Paybox gateway for Sylius projects.
     ```bash
     $ composer require gontran/sylius-paybox-bundle
     ```
+
+// TODO
 
 ## Complementary documentation
 
