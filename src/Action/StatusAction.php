@@ -40,14 +40,18 @@ class StatusAction implements ActionInterface, GatewayAwareInterface
 
         // Rely only on NotifyAction to update payment
         if (isset($model['notification_pending'])) {
+            $request->setModel($request->getFirstModel());
 
             if (self::RESPONSE_SUCCESS === $model['error_code']) {
+                $request->getModel()->setState(PaymentInterface::STATE_COMPLETED);
                 $request->markCaptured();
             }
             else if (self::RESPONSE_FAILED_MIN <= $model['error_code'] && self::RESPONSE_FAILED_MAX >= $model['error_code']) {
+                $request->getModel()->setState(PaymentInterface::STATE_FAILED);
                 $request->markFailed();
             }
             else {
+                $request->getModel()->setState(PaymentInterface::STATE_CANCELLED);
                 $request->markCanceled();
             }
             unset($model['notification_pending']);
