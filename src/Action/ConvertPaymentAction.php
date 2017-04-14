@@ -36,7 +36,6 @@ class ConvertPaymentAction implements ActionInterface, GenericTokenFactoryAwareI
         $details[PayboxParams::PBX_CMD] = $order->getNumber();
         $details[PayboxParams::PBX_PORTEUR] = $order->getCustomer()->getEmail();
         $token = $request->getToken();
-        // TODO : compute better return urls
         $details[PayboxParams::PBX_EFFECTUE] = $token->getTargetUrl();
         $details[PayboxParams::PBX_ANNULE] = $token->getTargetUrl();
         $details[PayboxParams::PBX_REFUSE] = $token->getTargetUrl();

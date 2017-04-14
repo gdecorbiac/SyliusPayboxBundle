@@ -43,15 +43,22 @@ class StatusAction implements ActionInterface, GatewayAwareInterface
             $request->setModel($request->getFirstModel());
 
             if (self::RESPONSE_SUCCESS === $model['error_code']) {
-                $request->getModel()->setState(PaymentInterface::STATE_COMPLETED);
+                // Because Sylius creates a new Payment when a payment has failed
+                // And because Notify Token can be called multiple times until payment has been granted
+                // Remove other payments that are not completed
+                $currentPayment = $request->getFirstModel();
+                $order = $currentPayment->getOrder();
+                foreach ($order->getPayments() as $payment) {
+                    if ($payment->getId() != $currentPayment->getId() && $payment->getState() != PaymentInterface::STATE_COMPLETED) {
+                        $order->removePayment($payment);
+                    }
+                }
                 $request->markCaptured();
             }
             else if (self::RESPONSE_FAILED_MIN <= $model['error_code'] && self::RESPONSE_FAILED_MAX >= $model['error_code']) {
-                $request->getModel()->setState(PaymentInterface::STATE_FAILED);
                 $request->markFailed();
             }
             else {
-                $request->getModel()->setState(PaymentInterface::STATE_CANCELLED);
                 $request->markCanceled();
             }
             unset($model['notification_pending']);
