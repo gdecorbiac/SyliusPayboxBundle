@@ -15,7 +15,7 @@ This plugin has been generated thanks to the payum composer Skeleton and thanks 
 2. In order to allow a previous denied/canceled payment to be completed, change payment state machine by importing config file in your `app/config/config.yml`
 
     ```
-imports:
+    imports:
         - { resource: "@GontranSyliusPayboxBundle/Resources/config/app/config.yml" }
     ```
 
